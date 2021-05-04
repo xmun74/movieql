@@ -1,0 +1,45 @@
+Over-fetching
+:필요한 데이터 이상을 서버에서 받게됨. 비효율적
+예)user의 username만 필요해도 이메일, 사진, 주소 등 다 가져와서 response로 보냄
+
+FE가 DB에 오직 사용자명만 요청하는 것 = Graphql로 해결
+
+Under-fetching
+:데이터 받기 위해 1번 이상의 request보냄
+예)앱 실행시/피드,알람,유저 등의 각각 request를 보내고 시작 = Graphql이 해결
+
+GraphQL
+-url이 없음
+-1개의 Query(db에 요청하고 graphql언어로 정보알려줌)에 요청한 정보만 받을 수 있음
+Query: DB로부터 정보얻을때
+
+schema  데이터 어떻게 보일지 정의
+:사용자에게 보내거나 받을 data에 대한 설명(int, floor, string인지 ...)
+
+Resolvers 해결사
+-graphql 서버에서 요청받음
+-서버가 쿼리나 mutation(변경)의 정의 발견하면 리솔버찾아서 함수 실행함
+
+
+
+Playground
+graphql-yoga에 따라오는 것. db를 테스트하게 해줌. localhost:4000
+
+
+---schema----
+type Movie {
+  id: Int!
+  name: String!
+  score: Int!
+}
+
+type Query {
+  movies: [Movie]!
+  movie(id: Int!): Movie
+}
+
+type Mutation {
+  addMovie(name: String!, score: Int!): Movie!
+  deleteMovie(id: Int!): Boolean!
+}
+-------
