@@ -1,8 +1,10 @@
-import { getMovies } from "./db";
+import { getMovies, getMovie, getSuggestions } from "./db";
 
 const resolvers = {
   Query: {
-    movies: (_, {rating, limit}) => getMovies(limit, rating),  //_ 이건 걍 변수명임 root,parent될수있음 안쓰니깐 _함
+    movies: (_, { rating, limit }) => getMovies(limit, rating), //_ 이건 걍 변수명임 root,parent될수있음 안쓰니깐 _함
+    movie: (_, { id }) => getMovie(id),
+    suggestions: (_, { id }) => getSuggestions(id),
   },
 };
 
